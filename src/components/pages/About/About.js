@@ -6,7 +6,7 @@ export default () => {
         <>
             <Helmet>
                 <meta name="description" content=""/>
-                <meta name="keywords" content=""/>
+                <meta name="keywords" content="Jake, Daoust, boxer, professional, Orangeville"/>
                 <title>About</title>
             </Helmet>
             <main role="main" id="about">

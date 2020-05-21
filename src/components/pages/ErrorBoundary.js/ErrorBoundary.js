@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import { logErrors } from "../../../actions/errors";
 
 import "./ErrorBoundary.scss";
 
@@ -11,32 +11,35 @@ class ErrorBoundary extends Component {
         hasErrors: false
     };
 
-    static propTypes = {
-        error: PropTypes.object.isRequired
+    static getDerivedStateFromError(error) {
+        return { hasError: true };
+    };
+
+    componentDidCatch(error) {
+        const { logErrors } = this.props;
+        logErrors(error);
     };
 
     render() {
         const { children } = this.props;
+        const { hasErrors } = this.state;;
 
-        if(false) {
-            return (
-                <>
-                    <Helmet>
-                        <title>400 Bad Request Error</title>    
-                    </Helmet> 
-                    <main role="main">
+        if(!hasErrors) return children;
 
-                    </main>
-                </>
-            ) 
-        } else return children; 
+        return (
+            <>
+                <Helmet>
+                    <meta name="description" content=""/>
+                    <meta name="keywords" content=""/>
+                    <title>400 Bad Request Error</title>
+                </Helmet>
+                <main role="main">
+
+                </main>
+            </>
+        );
     };
 };
 
-const mapStateToProps = state => ({
-    error: state.error  
-});
 
-const mapDispatchToProps = { };
-
-export default connect(mapStateToProps, mapDispatchToProps)(ErrorBoundary);
+export default connect(null, { logErrors })(ErrorBoundary);
