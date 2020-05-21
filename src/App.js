@@ -1,6 +1,5 @@
 import React from "react";
-import { Provider } from "react-redux";
-import store from "./store";
+
 import { Switch, Route } from "react-router-dom";
 
 import Loadable from "react-loadable";
@@ -10,26 +9,22 @@ import ErrorBoundary from "./components/pages/ErrorBoundary.js"
 
 import "./App.scss";
 
-export default class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <ErrorBoundary>
-          <Switch>
-            <Route path="/about" component={About}/>
-            <Route path="/blog" component={Blog}/>
-            <Route path="/blog/:id" component={Post}/>
-            <Route path="/contact" component={Contact}/>
-            <Route path="/gallery" component={Gallery}/>
-            <Route path="/news" component={News}/>
-            <Route path="/store" component={Store}/>
-            <Route exact path="/" component={Home}/>
-            <Route path="*" component={NotFound}/>
-          </Switch>
-        </ErrorBoundary>
-      </Provider>
-    );  
-  };
+const App = () => {
+  return (
+    <ErrorBoundary>
+      <Switch>
+        {/* <Route path="/about" component={About}/> */}
+        {/* <Route path="/blog" component={Blog}/> */}
+        {/* <Route path="/blog/:id" component={Post}/> */}
+        {/* <Route path="/contact" component={Contact}/> */}
+        {/* <Route path="/gallery" component={Gallery}/> */}
+        {/* <Route path="/news" component={News}/> */}
+        {/* <Route path="/store" component={Store}/> */}
+        <Route exact path="/" component={Home}/>
+        <Route path="*" component={NotFound}/>
+      </Switch>
+    </ErrorBoundary>
+  );
 };
 
 const About = Loadable({
@@ -85,3 +80,5 @@ const Store = Loadable({
   loading: Loading,
   delay: 500
 });
+
+export default App;
