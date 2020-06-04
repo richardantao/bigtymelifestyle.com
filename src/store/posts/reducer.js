@@ -1,20 +1,14 @@
-import { 
+import {
     POSTS_LOADING, POSTS_ERROR,
     POST_CREATED, POSTS_FETCHED,
     POST_RETURNED, POST_UPDATED, POST_DELETED
-} from "../actions/types";
+} from "./types";
 
 const initialState = {
     loading: false,
     posts: []
 };
 
-/**
- * @summary reducer that updates the posts branch of the state tree
- * @param  {Object} state - object containing the state tree
- * @param  {Object} action - object containing the dispatched action  
- * @return updated state tree
- */
 export default (state = initialState, action) => {
     switch(action.type) {
         case POSTS_LOADING:
@@ -59,14 +53,14 @@ export default (state = initialState, action) => {
                 loading: false,
                 posts: state.posts.map(post => {
                     const { id, title, category, body } = action.payload;
-                    
-                    if(post.id !== id) {
-                        return post;
-                    } else return {
+
+                    if(post.id !== id) return post;
+
+                    else return {
                         ...state.posts,
                         post: {
                             id,
-                            title, 
+                            title,
                             category,
                             body
                         }
@@ -79,7 +73,7 @@ export default (state = initialState, action) => {
                 loading: false,
                 posts: state.posts.filter(post => post.id !== action.payload)
             };
-        default: 
+        default:
             return state;
     };
 };
