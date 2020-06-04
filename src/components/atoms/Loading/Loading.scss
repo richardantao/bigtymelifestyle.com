@@ -1,34 +1,27 @@
 @import "../../../variables.scss";
 
-#loading {
-    /* --- Portrait Mobile --- */
-
-    /* --- Landscape Mobile --- */
-    @media (min-width: 576px) {
-
-    }
-
-    /* --- Portrait Tablet --- */
-    @media (min-width: 768px) {
-
-    }
-
-    /* --- Landscape Tablet --- */
-    @media (min-width: 992px) {
-
-    }
-
-    /* --- Small Laptop --- */
-    @media (min-width: 1200px) {
-
-    }
-    /* --- Large Laptop --- */
-    @media (min-width: 1440px) {
-
-    }
-
-    /* --- Desktop --- */
-    @media (min-width: 2100px) {
-
-    }
+#loader {
+    animation: loader 1s ease-in-out infinite;
+    border: 22.22px solid;
+    border-radius: 100%;
+    border-top-color: $brand-color;
+    border-bottom-color:rgba(255,255,255, 0.3);
+    border-left-color: $brand-color;
+    border-right-color:rgba(255,255,255, 0.3);
+    display: inline-block;
+    height: 200px;
+    padding: 0px;
+    position: absolute;
+        left: 40%;
+        top: 30%;
+    width: 200px;
+    -webkit-animation: loader 1s ease-in-out infinite;
+}
+@keyframes loader {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+@-webkit-keyframes loader {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
 }
